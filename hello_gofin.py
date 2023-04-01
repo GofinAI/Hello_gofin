@@ -4,7 +4,10 @@ import mysql.connector as db
 app = Flask(__name__)
 
 mydb = db.connect(
-    host,user,password,database
+    host = "gofin-aurora-instance-1.ci0rkg2zgzsd.us-east-1.rds.amazonaws.com",
+    user = "malikam",
+    password = "Malika@98966",
+    database = "usda"
 )
 
 @app.route('/')
