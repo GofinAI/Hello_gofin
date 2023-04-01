@@ -1,0 +1,26 @@
+from flask import Flask, render_template
+import mysql.connector
+
+app = Flask(__name__)
+
+# Set up the database connection
+mydb = db.connect(
+    host = "gofin-aurora-instance-1.ci0rkg2zgzsd.us-east-1.rds.amazonaws.com",
+    user = "malikam",
+    password = "Malika@98966",
+    database = "usda"
+)
+
+# Define the route for the webpage
+@app.route('/')
+def index():
+    # Execute a SELECT query
+    cursor = mydb.cursor()
+    cursor.execute("SELECT * FROM yourtable")
+    results = cursor.fetchall()
+    
+    # Render the webpage with the query results
+    return render_template('index.html', results=results)
+
+if __name__ == '__main__':
+    app.run(debug=True)
