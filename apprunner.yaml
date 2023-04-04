@@ -1,8 +1,10 @@
 version: 0.1
-os: linux
+os: windows
 runtime: python
-web:
+build:
   commands:
     - pip install --upgrade pip
     - pip install -r requirements.txt
-    - gunicorn Hello_db:app --bind=0.0.0.0:$PORT --workers=4 --worker-class=gevent
+web:
+  commands:
+    - waitress-serve --port=$PORT Hello_db:app
