@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, jsonify
 import mysql.connector as db
 
 app = Flask(__name__)
@@ -16,9 +16,9 @@ def index():
     cursor = mydb.cursor()
     cursor.execute("SELECT * FROM S_GROUP_DESC")
     results = cursor.fetchall()
-    
-    # Render the webpage with the query results
-    return render_template('index.html', results=results)
+
+    # Return the query results as JSON
+    return jsonify(results)
 
 if __name__ == '__main__':
-    app.run(port = 8000)
+    app.run()
